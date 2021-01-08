@@ -53,6 +53,44 @@ SNAT changes the private IP address of the source host to public IP address. It 
  
  ### 2.3 
  
+ A.192.168.101.2/24
+ B.192.168.101.3/24
+ C.192.168.102.2/24
+ D.192.168.102.3/24
+ 
+ 
+ We need Following elements to have above network configurations. We need to configure two VLAN interfces for 192.168.101.X and 192.168.102.X. 
+ 
+
+
+	                 ┌────────────────┐     ┌────────────────┐    ┌────────────────┐
+	                 │ VLAN 101       |     │                |    │VLAN Inter 102  |
+	                 │192.168.101.0   |     │   L3 Switch    |    │192.168.102.0   |
+	                 └────────────────┘     └────────────────┘    └────────────────┘
+			                                |
+							|
+							|
+							|
+							|
+							|
+							|
+							|
+							|
+	192.168.101.2/24 ┌────────────────┐     ┌────────────────┐    ┌────────────────┐
+	PC2--------------|  VLAN 101      |     │                |    │   VLAN 102     |------PC3 - 192.168.102.2/24
+	                 │                |-----│    L2 Switch   |----│                |------PC3 - 192.168.102.3/24
+	                 └────────────────┘     └────────────────┘    └────────────────┘
+			          |
+				  |192.168.101.3/24
+				  |
+				  PC1
+ 
+ PC1,PC2 are configured in VLAN 101 interface, so the ip's can be 192.168.101.2/24 and 192.168.101.3/24
+ PC1,PC2 are configured in VLAN 102 interface, so the ip's can be 192.168.102.2/24 and 192.168.102.3/24
+ 
+ PC1 of VLAN 101 wants to communicate with the PC2 of some other VLAN 102. As both end devices are of different VLAN, we need L-3 switch for routing the data from PC1 to host PC2.
+
+the L-2 switch will locate the destination host. Then, it will learn the destination address of the receipt host from the MAC table. After that, the layer-3 switch will perform the switching and routing part on the basis of IP address and subnet mask. Once it has all the necessary information, it will establish the link between them and route the data to the PC1 from the PC2 end.
  
  ### 2.4 ARP(Address Resolution Protocol)
  
