@@ -51,4 +51,19 @@ SNAT changes the private IP address of the source host to public IP address. It 
 	                 │ Destination    |
 	                 └────────────────┘  
  
-    
+ ### 2.3 
+ 
+ 
+ ### 2.4 ARP(Address Resolution Protocol)
+ 
+ In Below Nework topology, PC1 communicates with PC2 via Switch. The subnet mask tells us which part of the IP address is the network and host part, the host that uses 92.168.1.1 sees that 92.168.1.2 is using the exact same network address and will know that it can use ARP to find the MAC address, create an Ethernet frame, encapsulate the IP packet and send it towards the switch.
+ 
+ 
+ 
+
+	                 ┌────────────────┐     ┌────────────────┐    ┌────────────────┐
+	                 │                |     │                |    │                |
+	                 │      PC1       |-----│    Switch      |----│         PC2    |
+	                 └────────────────┘     └────────────────┘    └────────────────┘
+			 92.168.1.0                                    92.168.1.2
+ 
