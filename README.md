@@ -27,3 +27,28 @@ In general, Router/gateway device connects two ip networks. Computer that are at
 
 
 
+
+### 2.1 SNAT(Source Network Adrress Transaltion)
+
+SNAT changes the private IP address of the source host to public IP address. It can also change the source port in the TCP/UDP headers. SNAT comesinot picture when devices insdie of the secured network access the public network. 
+
+
+
+	                 ┌────────────────┐
+	                 │                |-------------> SNAT -------> INTERNET
+	                 │      Source    |
+	                 └────────────────┘  
+    
+    
+ ### 2.1 DNAT(Destination Network Adrress Transaltion)  
+ 
+ Destination NAT changes the destination address in the IP header of a packet. DNAT happens when public network communicates devices hosted in securced network zone.
+
+
+
+	                 ┌────────────────┐
+	                 │                |<------------- DNAT <------- INTERNET
+	                 │ Destination    |
+	                 └────────────────┘  
+ 
+    
